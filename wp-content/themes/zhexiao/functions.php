@@ -1,6 +1,6 @@
 <?php
 // global variable
-$GLOBALS['featuredCatId'] = 2;
+$GLOBALS['featuredCatId'] = 8;
 
 /* Add css and js to the Wordpress theme*/
 function theme_add_assets() {

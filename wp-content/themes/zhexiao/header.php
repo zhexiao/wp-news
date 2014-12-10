@@ -40,9 +40,6 @@
 							<?php
 								$category_ids = get_all_category_ids();
 								foreach($category_ids as $cat_id) { 
-									if($cat_id == $GLOBALS['featuredCatId']){
-										continue;
-									}
 								  	$cat_name = get_cat_name($cat_id);
 							?>
 									<li class="<?=($_GET['cat']==$cat_id)?'active':'';?>" > 
