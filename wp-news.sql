@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 10, 2014 at 04:53 AM
+-- Generation Time: Dec 10, 2014 at 07:27 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `wp_options` (
   `option_name` varchar(64) NOT NULL DEFAULT '',
   `option_value` longtext NOT NULL,
   `autoload` varchar(20) NOT NULL DEFAULT 'yes'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=188 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=192 ;
 
 --
 -- Dumping data for table `wp_options`
@@ -202,7 +202,7 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (96, 'cron', 'a:5:{i:1418195220;a:1:{s:20:"wp_maybe_auto_update";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1418212483;a:3:{s:16:"wp_version_check";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:17:"wp_update_plugins";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:16:"wp_update_themes";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1418255691;a:1:{s:19:"wp_scheduled_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1418259991;a:1:{s:30:"wp_scheduled_auto_draft_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}s:7:"version";i:2;}', 'yes'),
 (98, '_site_transient_update_core', 'O:8:"stdClass":4:{s:7:"updates";a:1:{i:0;O:8:"stdClass":10:{s:8:"response";s:6:"latest";s:8:"download";s:59:"https://downloads.wordpress.org/release/wordpress-4.0.1.zip";s:6:"locale";s:5:"en_US";s:8:"packages";O:8:"stdClass":5:{s:4:"full";s:59:"https://downloads.wordpress.org/release/wordpress-4.0.1.zip";s:10:"no_content";s:70:"https://downloads.wordpress.org/release/wordpress-4.0.1-no-content.zip";s:11:"new_bundled";s:71:"https://downloads.wordpress.org/release/wordpress-4.0.1-new-bundled.zip";s:7:"partial";b:0;s:8:"rollback";b:0;}s:7:"current";s:5:"4.0.1";s:7:"version";s:5:"4.0.1";s:11:"php_version";s:5:"5.2.4";s:13:"mysql_version";s:3:"5.0";s:11:"new_bundled";s:3:"3.8";s:15:"partial_version";s:0:"";}}s:12:"last_checked";i:1418173544;s:15:"version_checked";s:5:"4.0.1";s:12:"translations";a:0:{}}', 'yes'),
 (103, '_site_transient_update_themes', 'O:8:"stdClass":4:{s:12:"last_checked";i:1418178934;s:7:"checked";a:2:{s:12:"twentytwelve";s:3:"1.5";s:7:"zhexiao";s:3:"1.0";}s:8:"response";a:0:{}s:12:"translations";a:0:{}}', 'yes'),
-(104, '_transient_random_seed', '81fdbd01ec643b9b0623536722c49f8c', 'yes'),
+(104, '_transient_random_seed', '5b6df4969c62c5e784edba309370f22f', 'yes'),
 (106, '_site_transient_timeout_browser_3217742b6164e963c233a62be14dfa34', '1418687687', 'yes'),
 (107, '_site_transient_browser_3217742b6164e963c233a62be14dfa34', 'a:9:{s:8:"platform";s:9:"Macintosh";s:4:"name";s:6:"Chrome";s:7:"version";s:12:"39.0.2171.71";s:10:"update_url";s:28:"http://www.google.com/chrome";s:7:"img_src";s:49:"http://s.wordpress.org/images/browsers/chrome.png";s:11:"img_src_ssl";s:48:"https://wordpress.org/images/browsers/chrome.png";s:15:"current_version";s:2:"18";s:7:"upgrade";b:0;s:8:"insecure";b:0;}', 'yes'),
 (108, 'can_compress_scripts', '1', 'yes'),
@@ -256,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `wp_postmeta` (
   `post_id` bigint(20) unsigned NOT NULL DEFAULT '0',
   `meta_key` varchar(255) DEFAULT NULL,
   `meta_value` longtext
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=68 ;
 
 --
 -- Dumping data for table `wp_postmeta`
@@ -299,7 +299,14 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (45, 19, '_edit_lock', '1418178949:1'),
 (46, 19, '_thumbnail_id', '7'),
 (49, 21, '_edit_last', '1'),
-(50, 21, '_edit_lock', '1418183243:1');
+(50, 21, '_edit_lock', '1418183243:1'),
+(53, 23, '_edit_last', '1'),
+(54, 23, '_edit_lock', '1418191250:1'),
+(59, 25, '_edit_last', '1'),
+(60, 25, '_edit_lock', '1418191283:1'),
+(63, 27, '_edit_last', '1'),
+(64, 27, '_edit_lock', '1418191315:1'),
+(65, 27, '_thumbnail_id', '5');
 
 -- --------------------------------------------------------
 
@@ -331,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `wp_posts` (
   `post_type` varchar(20) NOT NULL DEFAULT 'post',
   `post_mime_type` varchar(100) NOT NULL DEFAULT '',
   `comment_count` bigint(20) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `wp_posts`
@@ -359,7 +366,13 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (19, 1, '2014-12-10 02:25:32', '2014-12-10 02:25:32', 'this is a big good nice testthis is a big good nice testthis is a big good nice testthis is a big good nice testthis is a big good nice test', 'this is a big good nice testthis is a big good nice test', '', 'publish', 'open', 'open', '', 'this-is-a-big-good-nice-testthis-is-a-big-good-nice-test', '', '', '2014-12-10 02:25:32', '2014-12-10 02:25:32', '', 0, 'http://127.0.0.1/wp-news/?p=19', 0, 'post', '', 0),
 (20, 1, '2014-12-10 02:25:32', '2014-12-10 02:25:32', 'this is a big good nice testthis is a big good nice testthis is a big good nice testthis is a big good nice testthis is a big good nice test', 'this is a big good nice testthis is a big good nice test', '', 'inherit', 'open', 'open', '', '19-revision-v1', '', '', '2014-12-10 02:25:32', '2014-12-10 02:25:32', '', 19, 'http://127.0.0.1/wp-news/?p=20', 0, 'revision', '', 0),
 (21, 1, '2014-12-10 03:49:43', '2014-12-10 03:49:43', 'sda dsa fdsa dsa fdsa dsa dsa fdsa dsaf sda fdsf', 'asdf ads dsa dsf dasf dsf ', '', 'publish', 'open', 'open', '', 'asdf-ads-dsa-dsf-dasf-dsf', '', '', '2014-12-10 03:49:43', '2014-12-10 03:49:43', '', 0, 'http://127.0.0.1/wp-news/?p=21', 0, 'post', '', 0),
-(22, 1, '2014-12-10 03:49:43', '2014-12-10 03:49:43', 'sda dsa fdsa dsa fdsa dsa dsa fdsa dsaf sda fdsf', 'asdf ads dsa dsf dasf dsf ', '', 'inherit', 'open', 'open', '', '21-revision-v1', '', '', '2014-12-10 03:49:43', '2014-12-10 03:49:43', '', 21, 'http://127.0.0.1/wp-news/2014/12/21-revision-v1/', 0, 'revision', '', 0);
+(22, 1, '2014-12-10 03:49:43', '2014-12-10 03:49:43', 'sda dsa fdsa dsa fdsa dsa dsa fdsa dsaf sda fdsf', 'asdf ads dsa dsf dasf dsf ', '', 'inherit', 'open', 'open', '', '21-revision-v1', '', '', '2014-12-10 03:49:43', '2014-12-10 03:49:43', '', 21, 'http://127.0.0.1/wp-news/2014/12/21-revision-v1/', 0, 'revision', '', 0),
+(23, 1, '2014-12-10 06:03:05', '2014-12-10 06:03:05', 'sd fds fds fds fds dssd fds asd fds', 'd ds   sd dsf ds dsf d', '', 'publish', 'open', 'open', '', 'd-ds-sd-dsf-ds-dsf-d', '', '', '2014-12-10 06:03:11', '2014-12-10 06:03:11', '', 0, 'http://127.0.0.1/wp-news/?p=23', 0, 'post', '', 0),
+(24, 1, '2014-12-10 06:03:05', '2014-12-10 06:03:05', 'sd fds fds fds fds dssd fds asd fds', 'd ds   sd dsf ds dsf d', '', 'inherit', 'open', 'open', '', '23-revision-v1', '', '', '2014-12-10 06:03:05', '2014-12-10 06:03:05', '', 23, 'http://127.0.0.1/wp-news/2014/12/23-revision-v1/', 0, 'revision', '', 0),
+(25, 1, '2014-12-10 06:03:45', '2014-12-10 06:03:45', 'sd fd fsd fds sd fsd fds ds fds s d', 'sd fs sd fd ', '', 'publish', 'open', 'open', '', 'sd-fs-sd-fd', '', '', '2014-12-10 06:03:45', '2014-12-10 06:03:45', '', 0, 'http://127.0.0.1/wp-news/?p=25', 0, 'post', '', 0),
+(26, 1, '2014-12-10 06:03:45', '2014-12-10 06:03:45', 'sd fd fsd fds sd fsd fds ds fds s d', 'sd fs sd fd ', '', 'inherit', 'open', 'open', '', '25-revision-v1', '', '', '2014-12-10 06:03:45', '2014-12-10 06:03:45', '', 25, 'http://127.0.0.1/wp-news/2014/12/25-revision-v1/', 0, 'revision', '', 0),
+(27, 1, '2014-12-10 06:04:05', '2014-12-10 06:04:05', 'd sd sd d sd sd ds', 'ds f ds fd  d d ds ds sd ', '', 'publish', 'open', 'open', '', 'ds-f-ds-fd-d-d-ds-ds-sd', '', '', '2014-12-10 06:04:06', '2014-12-10 06:04:06', '', 0, 'http://127.0.0.1/wp-news/?p=27', 0, 'post', '', 0),
+(28, 1, '2014-12-10 06:04:06', '2014-12-10 06:04:06', 'd sd sd d sd sd ds', 'ds f ds fd  d d ds ds sd ', '', 'inherit', 'open', 'open', '', '27-revision-v1', '', '', '2014-12-10 06:04:06', '2014-12-10 06:04:06', '', 27, 'http://127.0.0.1/wp-news/2014/12/27-revision-v1/', 0, 'revision', '', 0);
 
 -- --------------------------------------------------------
 
@@ -411,7 +424,10 @@ INSERT INTO `wp_term_relationships` (`object_id`, `term_taxonomy_id`, `term_orde
 (15, 8, 0),
 (17, 8, 0),
 (19, 8, 0),
-(21, 1, 0);
+(21, 1, 0),
+(23, 6, 0),
+(25, 6, 0),
+(27, 6, 0);
 
 -- --------------------------------------------------------
 
@@ -437,7 +453,7 @@ INSERT INTO `wp_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `desc
 (2, 2, 'category', '', 0, 0),
 (4, 4, 'category', '', 0, 0),
 (5, 5, 'category', '', 0, 0),
-(6, 6, 'category', '', 0, 0),
+(6, 6, 'category', '', 0, 3),
 (7, 7, 'category', '', 0, 0),
 (8, 8, 'category', '', 0, 6);
 
@@ -473,7 +489,7 @@ INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALU
 (12, 1, 'dismissed_wp_pointers', 'wp350_media,wp360_revisions,wp360_locks,wp390_widgets'),
 (13, 1, 'show_welcome_panel', '1'),
 (15, 1, 'wp_dashboard_quick_press_last_post_id', '3'),
-(16, 1, 'session_tokens', 'a:3:{s:64:"8a5495bf2f310f59bfe64f362cf819684099eb6a5715e48f1f096ad5fae5b00c";i:1418270395;s:64:"957197841d515048ed6accb442b61e56d6650aebe4278d18f5e96a0a3187a066";i:1418346370;s:64:"ff6605b3fbf650629278b8f890bf88a28bf7cda699de37a173eeb236aa33c69f";i:1418351074;}'),
+(16, 1, 'session_tokens', 'a:4:{s:64:"8a5495bf2f310f59bfe64f362cf819684099eb6a5715e48f1f096ad5fae5b00c";i:1418270395;s:64:"957197841d515048ed6accb442b61e56d6650aebe4278d18f5e96a0a3187a066";i:1418346370;s:64:"ff6605b3fbf650629278b8f890bf88a28bf7cda699de37a173eeb236aa33c69f";i:1418351074;s:64:"7cb336e5431ba8483e5d46a8042558dea83995d64f7a461918ece87dee49c28f";i:1418362681;}'),
 (17, 1, 'wp_user-settings', 'libraryContent=browse'),
 (18, 1, 'wp_user-settings-time', '1418173933');
 
@@ -596,17 +612,17 @@ MODIFY `link_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `wp_options`
 --
 ALTER TABLE `wp_options`
-MODIFY `option_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=188;
+MODIFY `option_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=192;
 --
 -- AUTO_INCREMENT for table `wp_postmeta`
 --
 ALTER TABLE `wp_postmeta`
-MODIFY `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=53;
+MODIFY `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=68;
 --
 -- AUTO_INCREMENT for table `wp_posts`
 --
 ALTER TABLE `wp_posts`
-MODIFY `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+MODIFY `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `wp_terms`
 --

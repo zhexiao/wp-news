@@ -9,7 +9,7 @@
 
 		<div class="col-md-4">	
 			<?php 
-				$featuredTopTwo = get_category_posts($GLOBALS['featuredCatId'], 2);
+				$featuredTopTwo = get_category_posts($GLOBALS['feaCatId'], 2);
 				foreach($featuredTopTwo as $ft){
 					$ftImage = wp_get_attachment_image_src( get_post_thumbnail_id( $ft->ID ), 'large' ); 
 			?>
@@ -33,7 +33,7 @@
 		</h4>
 
 		<?php 
-			$featuredTopTwo = get_category_posts($GLOBALS['featuredCatId'], 4, 2);
+			$featuredTopTwo = get_category_posts($GLOBALS['feaCatId'], 4, 2);
 			foreach($featuredTopTwo as $ft){
 				$ftImage = wp_get_attachment_image_src( get_post_thumbnail_id( $ft->ID ), 'large' ); 
 		?>
@@ -56,26 +56,28 @@
 
 	<div class="main-top-3">
 		<div class="col-md-8">
+			<h4 class="m-t-h4 m-t-3-ent">
+				<span class="title">Entertainment</span>
+			</h4>
+
+			<?php 
+				$entPosts = get_category_posts($GLOBALS['entCatId']);
+				foreach($entPosts as $ep){
+					$epImg = wp_get_attachment_image_src( get_post_thumbnail_id( $ep->ID ), 'large' ); 
+			?>
+				<div class="col-md-3 f-a-col">		
+					<div class="img-hover">		
+						<a href="<?=$ep->guid?>">
+							<img class="img-responsive img-hover-c" src="<?=$epImg[0]?>" />
+						</a>
+					</div>
+					<div class="m-t-2-title">
+						<a href="<?=$ep->guid?>"><?=substr($ep->post_title, 0, 30)?></a>
+					</div>
+				</div>
 			<?php
-				$query = new WP_Query( 'cat=8' );
-
-				if ( $query->have_posts() ) :
-					while ( $query->have_posts() ) : 
-						$query->the_post();
-
-						the_title();
-						echo( '<br />' );	
-						// check if the post has a Post Thumbnail assigned to it.
-						if ( has_post_thumbnail() ) {
-							the_post_thumbnail('medium');
-						} 
-						the_content();
-						echo( '<br />' );
-					endwhile;
-
-					wp_reset_postdata(); 
-				endif;
-			?>		
+				}
+			?>			
 		</div>
 
 		<div class="col-md-4">

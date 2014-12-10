@@ -2,7 +2,8 @@
 /**
  * global variable
  */
-$GLOBALS['featuredCatId'] = 8;
+$GLOBALS['feaCatId'] = 8;
+$GLOBALS['entCatId'] = 6;
 
 
 /**
