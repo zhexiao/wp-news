@@ -1,8 +1,13 @@
 <?php
-// global variable
+/**
+ * global variable
+ */
 $GLOBALS['featuredCatId'] = 8;
 
-/* Add css and js to the Wordpress theme*/
+
+/**
+ * Add css and js to the Wordpress theme
+ */
 function theme_add_assets() {
 	// load css
 	wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css' );
@@ -15,10 +20,16 @@ function theme_add_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'theme_add_assets' );
 
-//  declare their support for post thumbnails 
+
+/**
+ * declare their support for post thumbnails 
+ */
 add_theme_support( 'post-thumbnails' ); 
 
-// get featured posts
+
+/**
+ * get post content
+ */
 function get_category_posts($categoryId = '', $page = 5, $offset = 0){
 	$args = array(
 		'posts_per_page'   => $page,
@@ -34,3 +45,22 @@ function get_category_posts($categoryId = '', $page = 5, $offset = 0){
 	return get_posts( $args );
 }
 
+
+/**
+ * Register sidebars.
+ */
+function sidebar_widgets_init() {
+	$args = array(
+		'name'          => __( 'Right Sidebar', 'right-sidebar' ),
+		'id'            => 'right-sidebar',
+		'description'   => '',
+	    'class'         => '',
+		'before_widget' => '<li id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</li>',
+		'before_title'  => '<h2 class="widgettitle">',
+		'after_title'   => '</h2>' 
+	);
+
+	register_sidebar($args);
+}
+add_action( 'widgets_init', 'sidebar_widgets_init' );

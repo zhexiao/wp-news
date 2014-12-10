@@ -54,31 +54,37 @@
 
 	<div class="clearfix"></div>
 
-	<div>
-		<?php
-			$query = new WP_Query( 'cat=8' );
+	<div class="main-top-3">
+		<div class="col-md-8">
+			<?php
+				$query = new WP_Query( 'cat=8' );
 
-			if ( $query->have_posts() ) :
-				while ( $query->have_posts() ) : 
-					$query->the_post();
+				if ( $query->have_posts() ) :
+					while ( $query->have_posts() ) : 
+						$query->the_post();
 
-					the_title();
-					echo( '<br />' );	
-					// check if the post has a Post Thumbnail assigned to it.
-					if ( has_post_thumbnail() ) {
-						the_post_thumbnail('medium');
-					} 
-					the_content();
-					echo( '<br />' );
-				endwhile;
+						the_title();
+						echo( '<br />' );	
+						// check if the post has a Post Thumbnail assigned to it.
+						if ( has_post_thumbnail() ) {
+							the_post_thumbnail('medium');
+						} 
+						the_content();
+						echo( '<br />' );
+					endwhile;
 
-				wp_reset_postdata(); 
-			endif;
+					wp_reset_postdata(); 
+				endif;
+			?>		
+		</div>
 
-		?>
+		<div class="col-md-4">
+			<?php get_sidebar();?>
+		</div>
 	</div>
-
 </div>
+
+<div class="clearfix"></div>
 
 
 <!-- get footer content -->
