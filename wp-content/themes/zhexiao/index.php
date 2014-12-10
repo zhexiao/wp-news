@@ -9,7 +9,7 @@
 
 		<div class="col-md-4">	
 			<?php 
-				$featuredTopTwo = get_category_posts($GLOBALS['feaCatId'], 2);
+				$featuredTopTwo = get_category_posts($GLOBALS['catTop1'], 2);
 				foreach($featuredTopTwo as $ft){
 					$ftImage = wp_get_attachment_image_src( get_post_thumbnail_id( $ft->ID ), 'large' ); 
 			?>
@@ -17,7 +17,9 @@
 					<a href="<?=$ft->guid?>">
 						<img class="img-responsive ft-img" src="<?=$ftImage[0]?>" />
 					</a>
-					<div class="ft-img-title"><?=substr($ft->post_title, 0, 30)?></div>
+					<div class="ft-img-title">
+						<?=substr($ft->post_title, 0, 30)?>
+					</div>
 				</div>
 			<?php
 				}
@@ -33,23 +35,12 @@
 		</h4>
 
 		<?php 
-			$featuredTopTwo = get_category_posts($GLOBALS['feaCatId'], 4, 2);
-			foreach($featuredTopTwo as $ft){
-				$ftImage = wp_get_attachment_image_src( get_post_thumbnail_id( $ft->ID ), 'large' ); 
-		?>
-			<div class="col-md-3 f-a-col">		
-				<div class="img-hover">		
-					<a href="<?=$ft->guid?>">
-						<img class="img-responsive img-hover-c" src="<?=$ftImage[0]?>" />
-					</a>
-				</div>
-				<div class="m-t-2-title">
-					<a href="<?=$ft->guid?>"><?=substr($ft->post_title, 0, 30)?></a>
-				</div>
-			</div>
-		<?php
-			}
-		?>				
+			do_action( 'featured_posts', array(
+				'cat' => $GLOBALS['catTop1'],
+				'posts_per_page' => 4,
+				'offset' => 2
+			));		
+		?>	
 	</div>
 
 	<div class="clearfix"></div>
@@ -57,33 +48,26 @@
 	<div class="main-top-3">
 		<div class="col-md-8">
 			<h4 class="m-t-h4 m-t-3-ent">
-				<span class="title">Entertainment</span>
+				<span class="title">
+					<?=get_cat_name( $GLOBALS['catTop2'] )?>
+				</span>
 			</h4>
 
-			<?php 
-				$entPosts = get_category_posts($GLOBALS['entCatId']);
-				foreach($entPosts as $ep){
-					$epImg = wp_get_attachment_image_src( get_post_thumbnail_id( $ep->ID ), 'large' ); 
-			?>
-				<div class="col-md-3 f-a-col">		
-					<div class="img-hover">		
-						<a href="<?=$ep->guid?>">
-							<img class="img-responsive img-hover-c" src="<?=$epImg[0]?>" />
-						</a>
-					</div>
-					<div class="m-t-2-title">
-						<a href="<?=$ep->guid?>"><?=substr($ep->post_title, 0, 30)?></a>
-					</div>
-				</div>
-			<?php
-				}
-			?>			
+			<div class="m-t-3-content">
+				<?php
+					do_action( 'categorized_posts', array(
+						'cat' => $GLOBALS['catTop2'],
+						'posts_per_page' => 6
+					));
+				?>
+			</div>
 		</div>
 
 		<div class="col-md-4">
 			<?php get_sidebar();?>
 		</div>
 	</div>
+
 </div>
 
 <div class="clearfix"></div>

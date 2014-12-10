@@ -2,8 +2,8 @@
 /**
  * global variable
  */
-$GLOBALS['feaCatId'] = 8;
-$GLOBALS['entCatId'] = 6;
+$GLOBALS['catTop1'] = 8;
+$GLOBALS['catTop2'] = 6;
 
 
 /**
@@ -48,7 +48,7 @@ function get_category_posts($categoryId = '', $page = 5, $offset = 0){
 
 
 /**
- * Register sidebars.
+ * Register dynamic sidebars.
  */
 function sidebar_widgets_init() {
 	$args = array(
@@ -65,3 +65,117 @@ function sidebar_widgets_init() {
 	register_sidebar($args);
 }
 add_action( 'widgets_init', 'sidebar_widgets_init' );
+
+
+/**
+ * get the  first image in post content
+ * @return [type] [description]
+ */
+function catch_that_image() {
+	global $post, $posts;
+	$first_img = '';
+	ob_start();
+	ob_end_clean();
+	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+	$first_img = $matches[1][0];
+
+	if(empty($first_img)) {
+		$first_img = "/path/to/default.png";
+	}
+	return $first_img;
+}
+
+/**
+ * show wordpress featured posts
+ * @param  [type] $args [description]
+ * @return [type]       [description]
+ */
+function show_featured_posts($args){
+	$feaQuery = new WP_Query( array(
+		'cat' => $args['cat'],
+		'posts_per_page' => $args['posts_per_page'],
+		'offset' => $args['offset']
+	));
+	$str = '';
+
+	while ( $feaQuery->have_posts() ) {
+		$feaQuery->the_post();
+		$ftImage = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'large' ); 
+
+		$str .= '<div class="col-md-3 f-a-col">		
+					<div class="img-hover">		
+						<a href="'.get_the_guid().'">
+							<img class="img-responsive img-hover-c" src="'.$ftImage[0].'" />
+						</a>
+					</div>
+					<div class="m-t-2-title">
+						<a href="'.get_the_guid().'">'.get_the_title().'</a>
+					</div>
+				</div>';
+	}	
+
+	wp_reset_postdata();
+
+	echo $str;
+}
+add_action( 'featured_posts', 'show_featured_posts');
+
+
+/**
+ * use do_action display categorized content
+ * @param  [type] $catId [description]
+ * @return [type]        [description]
+ */
+function show_posts_by_category($args){
+	$catQuery = new WP_Query( array(
+		'cat' => $args['cat'],
+		'posts_per_page' => $args['posts_per_page']
+	));
+	$str = '';
+
+	$i=0;
+	while ( $catQuery->have_posts() ) {
+		$catQuery->the_post();
+
+		$content = '';
+		$extra_class = 'second-post';
+		if($i === 0){
+			$extra_class = "first-post";
+			$content = strip_tags(get_the_content());
+			if(strlen($content) > 200){
+				$content = substr($content, 0, 200).'...';
+			}
+		}
+
+		$title = get_the_title();
+		if(strlen($title) > 70){
+			$title = substr($title, 0, 70).'...';
+		}
+
+		$str .= '<div class="col-md-6 f-a-col '.$extra_class.'">		
+					<div class="img-hover">		
+						<a href="'.get_the_guid().'">
+							<img class="img-responsive img-hover-c" src="'.catch_that_image().'" />
+						</a>
+					</div>
+					<div class="m-t-2-time">
+						<time>'.date('l, M j, Y' ,get_post_time()).'</time>
+					</div>
+					<div class="m-t-2-title">
+						<a href="'.get_the_guid().'">'.$title.'</a>
+					</div>
+					<div class="m-t-2-content">
+						'.$content.'
+					</div>
+					<div class="clearfix"></div>
+				</div>';
+		$i++;
+	}	
+
+	wp_reset_postdata();
+
+	echo $str;
+}
+add_action( 'categorized_posts', 'show_posts_by_category');
+
+
