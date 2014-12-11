@@ -174,11 +174,7 @@
 			</div>
 		</div>
 	</div>
-
 </div>
-
-<div class="clearfix"></div>
-
 
 <!-- get footer content -->
 <?php get_footer(); ?>
