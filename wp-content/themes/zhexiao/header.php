@@ -15,7 +15,7 @@
 					<?=date('l, M j, Y', time())?>
 				</span>
 				<a href="" class="header-logo">
-					<img src="http://motive.theme-sphere.com/news-demo/wp-content/uploads/2014/10/news-logo-retina.jpg" />
+					<img src="<?=get_bloginfo('template_directory');?>/images/logo.png" />
 				</a>
 			</div>
 
