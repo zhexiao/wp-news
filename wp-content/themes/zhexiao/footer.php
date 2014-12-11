@@ -1,4 +1,4 @@
-	   <div class="text-center">
+	   <div class="footer text-center">
 		   	<?php bloginfo( 'name' ); ?> is proudly powered by Wordpress.
 	   	</div>
    	</div>

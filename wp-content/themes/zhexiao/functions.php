@@ -3,7 +3,18 @@
  * global variable
  */
 $GLOBALS['catTop1'] = 8;
-$GLOBALS['catTop2'] = 6;
+$GLOBALS['catTop2'] = 7;
+$GLOBALS['catTop3'] = 6;
+$GLOBALS['catTop4'] = 5;
+$GLOBALS['catTop5'] = 2;
+$GLOBALS['catTop6'] = 4;
+$GLOBALS['catTop7'] = 1;
+
+// Since WordPress 3.6, If your theme supports HTML5, which happens if it uses:
+add_theme_support( 'html5', array( 'search-form' ) );
+
+// declare their support for post thumbnails 
+add_theme_support( 'post-thumbnails' ); 
 
 
 /**
@@ -12,6 +23,7 @@ $GLOBALS['catTop2'] = 6;
 function theme_add_assets() {
 	// load css
 	wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css' );
+	wp_enqueue_style( 'font-awesome-css', get_template_directory_uri() . '/css/font-awesome.min.css' );
 	wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css' );
 
 	// load javascript
@@ -20,12 +32,6 @@ function theme_add_assets() {
 	wp_enqueue_script( 'jquery.easing', get_template_directory_uri() . '/js/jquery.easing.1.3.js', array(), '', true );
 }
 add_action( 'wp_enqueue_scripts', 'theme_add_assets' );
-
-
-/**
- * declare their support for post thumbnails 
- */
-add_theme_support( 'post-thumbnails' ); 
 
 
 /**
@@ -104,12 +110,12 @@ function show_featured_posts($args){
 
 		$str .= '<div class="col-md-3 f-a-col">		
 					<div class="img-hover">		
-						<a href="'.get_the_guid().'">
+						<a href="'.get_permalink().'">
 							<img class="img-responsive img-hover-c" src="'.$ftImage[0].'" />
 						</a>
 					</div>
 					<div class="m-t-2-title">
-						<a href="'.get_the_guid().'">'.get_the_title().'</a>
+						<a href="'.get_permalink().'">'.get_the_title().'</a>
 					</div>
 				</div>';
 	}	
@@ -154,7 +160,7 @@ function show_posts_by_category($args){
 
 		$str .= '<div class="col-md-6 f-a-col '.$extra_class.'">		
 					<div class="img-hover">		
-						<a href="'.get_the_guid().'">
+						<a href="'.get_permalink().'">
 							<img class="img-responsive img-hover-c" src="'.catch_that_image().'" />
 						</a>
 					</div>
@@ -162,7 +168,7 @@ function show_posts_by_category($args){
 						<time>'.date('l, M j, Y' ,get_post_time()).'</time>
 					</div>
 					<div class="m-t-2-title">
-						<a href="'.get_the_guid().'">'.$title.'</a>
+						<a href="'.get_permalink().'">'.$title.'</a>
 					</div>
 					<div class="m-t-2-content">
 						'.$content.'
