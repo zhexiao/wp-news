@@ -45,6 +45,7 @@ a{
 body{
 	background-image: url('images/bg.jpg');
 	background-repeat: repeat;
+	font: 14px/1.71429 Lora, Georgia, serif;
 }
 
 .main-wrap{
@@ -433,7 +434,8 @@ body{
 						border-bottom: 1px solid #e6e6e6;
 
 						a{
-							font-size: 17px;
+							font-size: 14px;
+							color: #010101;
 						}
 					}
 				}

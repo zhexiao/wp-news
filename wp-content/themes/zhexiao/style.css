@@ -38,7 +38,8 @@ a {
 
 body {
   background-image: url("images/bg.jpg");
-  background-repeat: repeat; }
+  background-repeat: repeat;
+  font: 14px/1.71429 Lora, Georgia, serif; }
 
 .main-wrap {
   background: #fff;
@@ -319,7 +320,8 @@ body {
           padding: 10px 0px;
           border-bottom: 1px solid #e6e6e6; }
           .main-content .col-right-sidebar .right-sidebar .widget ul li a {
-            font-size: 17px; }
+            font-size: 14px;
+            color: #010101; }
       .main-content .col-right-sidebar .right-sidebar .widget .post-date {
         font-size: 13px;
         color: #999;
@@ -330,3 +332,5 @@ body {
 
 .footer {
   margin: 60px 0 30px; }
+
+/*# sourceMappingURL=style.css.map */
