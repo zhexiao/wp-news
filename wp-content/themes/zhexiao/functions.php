@@ -181,7 +181,7 @@ function show_posts_by_category($args){
 					    	<div class="c-p-content">
 					    		'.$content.'
 					    	</div>
-					    	<time>'.date('l, M j, Y', get_post_time()).'</time>
+					    	<time>'.date('h:i A, D F j, Y', get_post_time()).'</time>
 					    	<div class="clearfix"></div>
 					  	</div>
 					</div>
@@ -225,7 +225,7 @@ function show_recent_posts($args = array()){
 				  	'.$imgStr.'
 				  	<div class="media-body">
 				    	<div class="r-p-title"><a href="'.get_permalink($recent['ID']).'">'.$title.'</a></div>
-				    	<time>'.date('l, M j, Y', strtotime($recent["post_date"])).'</time>
+				    	<time>'.date('h:i A, D F j, Y', strtotime($recent["post_date"])).'</time>
 				  	</div>
 				</div>';
 	}

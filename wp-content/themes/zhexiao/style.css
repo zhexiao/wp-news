@@ -229,7 +229,7 @@ body {
         font-size: 17px; }
     .main-content .m-t-3-content .f-a-col .c-p-content {
       font-size: 13px;
-      line-height: 1.7; }
+      margin-bottom: 10px; }
   .main-content .m-t-4-t1 {
     border-color: #e68200; }
     .main-content .m-t-4-t1 .title {
@@ -325,7 +325,7 @@ body {
       border-radius: 2px; }
   .col-right-sidebar .recent-post time {
     color: #666;
-    font-size: 11px; }
+    font-size: 13px; }
   .col-right-sidebar .recent-post .r-p-title a {
     font-size: 16px; }
   .col-right-sidebar .recent-post .media {
