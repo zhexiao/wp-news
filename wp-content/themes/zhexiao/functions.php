@@ -235,45 +235,6 @@ function show_recent_posts($args = array()){
 add_action( 'recent_posts', 'show_recent_posts');
 
 
-/**
- * Set up post entry meta.
- *
- * Prints HTML with meta information for current post: categories, tags, permalink, author, and date
- */
-function post_entry_meta() {
-	$categories_list = get_the_category_list( ', ');
-
-	$tag_list = get_the_tag_list( '', ', ');
-
-	$date = sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a>',
-		esc_url( get_permalink() ),
-		esc_attr( get_the_time() ),
-		esc_attr( get_the_date( 'c' ) ),
-		esc_html( get_the_date() )
-	);
-
-	$author = sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>',
-		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-		esc_attr( sprintf( 'View all posts by %s', get_the_author() ) ),
-		get_the_author()
-	);
-
-	if ( $tag_list ) {
-		$utility_text = 'This entry was posted in %1$s and tagged %2$s on %3$s<span class="by-author"> by %4$s</span>.';
-	} elseif ( $categories_list ) {
-		$utility_text = 'This entry was posted in %1$s on %3$s<span class="by-author"> by %4$s</span>.';
-	} else {
-		$utility_text = 'This entry was posted on %3$s<span class="by-author"> by %4$s</span>.';
-	}
-
-	printf(
-		$utility_text,
-		$categories_list,
-		$tag_list,
-		$date,
-		$author
-	);
-}
 
 /**
  * Displays navigation to next/previous pages when applicable.

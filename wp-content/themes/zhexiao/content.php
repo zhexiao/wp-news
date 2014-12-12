@@ -13,11 +13,15 @@
 		</div>
 	<?php endif; ?>
 
-	<header class="entry-header">
-		<?php if ( ! post_password_required() && ! is_attachment() ) :
-			// the_post_thumbnail();
-		endif; ?>
+	<header class="entry-header">	
+		<!-- image -->
+		<?php if ( ! post_password_required() && ! is_attachment() && has_post_thumbnail()) : ?>
+			<div class="entry-image">
+				<img src="<?=wp_get_attachment_url( get_post_thumbnail_id() );?>" />
+			</div>
+		<?php endif; ?>
 
+		<!-- title -->
 		<?php if ( is_single() ) : ?>
 			<h1 class="entry-title">
 				<?php the_title(); ?>
@@ -30,6 +34,44 @@
 			</h1>
 		<?php endif; ?>
 
+		<!-- meta1 info -->
+		<div class="entry-meta-1">
+			<span class="author">
+				<span>By</span>
+				<a href="<?=esc_url(get_author_posts_url(get_the_author_meta('ID')))?>" ><?=get_the_author();?></a>
+			</span>
+
+			<span class="datetime">
+				on <?=get_the_date()?>
+			</span>
+
+			<span class="category">
+				<?=get_the_category_list(', ');?>
+			</span>
+		</div>
+
+		<!-- content -->
+		<?php if ( is_search() ) : ?>
+			<div class="entry-summary">
+				<?php the_excerpt(); ?>
+			</div>
+		<?php else : ?>
+			<div class="entry-content">
+				<?php the_content( 'Continue reading <span class="meta-nav">&rarr;</span>' ); ?>
+				<?php wp_link_pages( array( 
+					'before' => '<div class="page-links">' . 'Pages:', 
+					'after' => '</div>' 
+				) ); ?>
+			</div>
+		<?php endif; ?>
+
+		<!-- meta2 info-->
+		<div class="entry-meta-2">
+			<b class="tagLabel"><i class="fa fa-tags"></i>TAGS:</b>
+			<?=get_the_tag_list( '', '');?>
+		</div>
+
+
 		<?php if ( comments_open() ) : ?>
 			<div class="comments-link">
 				<?php comments_popup_link( '<span class="leave-reply">' . 'Leave a reply' . '</span>', '1 Reply', '% Replies'); ?>
@@ -37,22 +79,9 @@
 		<?php endif; ?>
 	</header>
 
-	<?php if ( is_search() ) : ?>
-		<div class="entry-summary">
-			<?php the_excerpt(); ?>
-		</div>
-	<?php else : ?>
-		<div class="entry-content">
-			<?php the_content( 'Continue reading <span class="meta-nav">&rarr;</span>' ); ?>
-			<?php wp_link_pages( array( 
-				'before' => '<div class="page-links">' . 'Pages:', 
-				'after' => '</div>' 
-			) ); ?>
-		</div>
-	<?php endif; ?>
+
 
 	<footer class="entry-meta">
-		<?php post_entry_meta(); ?>
 		<?php edit_post_link( 'Edit', '<span class="edit-link">', '</span>' ); ?>
 		<?php if ( is_singular() && get_the_author_meta( 'description' ) && is_multi_author() ) : ?>
 			<div class="author-info">
