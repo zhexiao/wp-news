@@ -60,7 +60,7 @@
 				<?php
 					do_action( 'categorized_posts', array(
 						'cat' => $GLOBALS['catTop2'],
-						'posts_per_page' => 6
+						'posts_per_page' => 4
 					));
 				?>
 			</div>
@@ -80,7 +80,7 @@
 				<?php
 					do_action( 'categorized_posts', array(
 						'cat' => $GLOBALS['catTop3'],
-						'posts_per_page' => 6
+						'posts_per_page' => 4
 					));
 				?>
 			</div>
@@ -100,7 +100,7 @@
 				<?php
 					do_action( 'categorized_posts', array(
 						'cat' => $GLOBALS['catTop4'],
-						'posts_per_page' => 6
+						'posts_per_page' => 4
 					));
 				?>
 			</div>
@@ -128,7 +128,7 @@
 				<?php
 					do_action( 'categorized_posts', array(
 						'cat' => $GLOBALS['catTop5'],
-						'posts_per_page' => 1
+						'posts_per_page' => 3
 					));
 				?>
 			</div>
@@ -148,7 +148,7 @@
 				<?php
 					do_action( 'categorized_posts', array(
 						'cat' => $GLOBALS['catTop6'],
-						'posts_per_page' => 1
+						'posts_per_page' => 3
 					));
 				?>
 			</div>
@@ -168,7 +168,7 @@
 				<?php
 					do_action( 'categorized_posts', array(
 						'cat' => $GLOBALS['catTop7'],
-						'posts_per_page' => 1
+						'posts_per_page' => 3
 					));
 				?>
 			</div>

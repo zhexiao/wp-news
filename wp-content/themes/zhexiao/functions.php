@@ -17,22 +17,6 @@ add_theme_support( 'html5', array( 'search-form' ) );
 add_theme_support( 'post-thumbnails' ); 
 
 
-/**
- * Add css and js to the Wordpress theme
- */
-function theme_add_assets() {
-	// load css
-	wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css' );
-	wp_enqueue_style( 'font-awesome-css', get_template_directory_uri() . '/css/font-awesome.min.css' );
-	wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css' );
-
-	// load javascript
-	wp_enqueue_script( 'jquery', get_template_directory_uri() . '/js/jquery-1.11.1.min');
-	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '', true );
-	wp_enqueue_script( 'jquery.easing', get_template_directory_uri() . '/js/jquery.easing.1.3.js', array(), '', true );
-}
-add_action( 'wp_enqueue_scripts', 'theme_add_assets' );
-
 
 /**
  * get post content
@@ -51,6 +35,46 @@ function get_category_posts($categoryId = '', $page = 5, $offset = 0){
 
 	return get_posts( $args );
 }
+
+
+/**
+ * get the  first image in post content
+ * @return [type] [description]
+ */
+function catch_that_image($content = '') {
+	if(empty($content)){
+		global $post, $posts;
+		$first_img = '';
+		ob_start();
+		ob_end_clean();
+		$content = $post->post_content;
+	}
+
+	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $content, $matches);
+	$first_img = $matches[1][0];
+
+	if(empty($first_img)) {
+		return '';
+	}
+	return $first_img;
+}
+
+
+/**
+ * Add css and js to the Wordpress theme
+ */
+function theme_add_assets() {
+	// load css
+	wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css' );
+	wp_enqueue_style( 'font-awesome-css', get_template_directory_uri() . '/css/font-awesome.min.css' );
+	wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css' );
+
+	// load javascript
+	wp_enqueue_script( 'jquery', get_template_directory_uri() . '/js/jquery-1.11.1.min');
+	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '', true );
+	wp_enqueue_script( 'jquery.easing', get_template_directory_uri() . '/js/jquery.easing.1.3.js', array(), '', true );
+}
+add_action( 'wp_enqueue_scripts', 'theme_add_assets' );
 
 
 /**
@@ -73,23 +97,6 @@ function sidebar_widgets_init() {
 add_action( 'widgets_init', 'sidebar_widgets_init' );
 
 
-/**
- * get the  first image in post content
- * @return [type] [description]
- */
-function catch_that_image() {
-	global $post, $posts;
-	$first_img = '';
-	ob_start();
-	ob_end_clean();
-	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
-	$first_img = $matches[1][0];
-
-	if(empty($first_img)) {
-		$first_img = "/path/to/default.png";
-	}
-	return $first_img;
-}
 
 /**
  * show wordpress featured posts
@@ -139,43 +146,46 @@ function show_posts_by_category($args){
 	));
 	$str = '';
 
-	$i=0;
 	while ( $catQuery->have_posts() ) {
 		$catQuery->the_post();
 
-		$content = '';
-		$extra_class = 'second-post';
-		if($i === 0){
-			$extra_class = "first-post";
-			$content = strip_tags(get_the_content());
-			if(strlen($content) > 200){
-				$content = substr($content, 0, 200).'...';
-			}
+		// get content
+		$content = strip_tags(get_the_content());
+		if(strlen($content) > 100){
+			$content = substr($content, 0, 100).'...';
 		}
+		
 
+		// get title
 		$title = get_the_title();
 		if(strlen($title) > 70){
 			$title = substr($title, 0, 70).'...';
 		}
 
-		$str .= '<div class="col-md-6 f-a-col '.$extra_class.'">		
-					<div class="img-hover">		
-						<a href="'.get_permalink().'">
-							<img class="img-responsive img-hover-c" src="'.catch_that_image().'" />
-						</a>
+		// get image
+		$imgStr = '';
+		$image = catch_that_image();
+		if(!empty($image)){
+			$imgStr = 	'<a class="media-top" href="'.get_permalink().'">
+					    	<img src="'.$image.'" alt="'.$title.'">
+					  	</a>';
+		}
+
+		$str .= '<div class="col-md-6 f-a-col">
+					<div class="media">
+					  	'.$imgStr.'
+					  	<div class="media-body">
+					    	<div class="c-p-title">
+					    		<a href="'.get_permalink().'">'.$title.'</a>
+					    	</div>
+					    	<div class="c-p-content">
+					    		'.$content.'
+					    	</div>
+					    	<time>'.date('l, M j, Y', get_post_time()).'</time>
+					    	<div class="clearfix"></div>
+					  	</div>
 					</div>
-					<div class="m-t-2-time">
-						<time>'.date('l, M j, Y' ,get_post_time()).'</time>
-					</div>
-					<div class="m-t-2-title">
-						<a href="'.get_permalink().'">'.$title.'</a>
-					</div>
-					<div class="m-t-2-content">
-						'.$content.'
-					</div>
-					<div class="clearfix"></div>
 				</div>';
-		$i++;
 	}	
 
 	wp_reset_postdata();
@@ -183,6 +193,46 @@ function show_posts_by_category($args){
 	echo $str;
 }
 add_action( 'categorized_posts', 'show_posts_by_category');
+
+
+/**
+ * display the recent posts
+ */
+function show_recent_posts($args = array()){
+	$str = '';
+	$recent_posts = wp_get_recent_posts( $args );
+	foreach( $recent_posts as $recent ){
+		// check the title
+		$title = $recent["post_title"];
+		if(strlen($title) > 70){
+			$title = substr($title, 0, 70).'...';
+		}
+
+		// get the featured image
+		$image = wp_get_attachment_url( get_post_thumbnail_id($recent['ID']) );
+		if(!$image){
+			$image = catch_that_image($recent['post_content']);
+		}
+
+		$imgStr = '';	
+		if(!empty($image)){
+			$imgStr = 	'<a class="media-left" href="'.get_permalink($recent['ID']).'">
+					    	<img src="'.$image.'" alt="'.$title.'" style="width: 64px; height: 60px;">
+					  	</a>';
+		}
+
+		$str .= '<div class="media">
+				  	'.$imgStr.'
+				  	<div class="media-body">
+				    	<div class="r-p-title"><a href="'.get_permalink($recent['ID']).'">'.$title.'</a></div>
+				    	<time>'.date('l, M j, Y', strtotime($recent["post_date"])).'</time>
+				  	</div>
+				</div>';
+	}
+
+	echo $str;
+}
+add_action( 'recent_posts', 'show_recent_posts');
 
 
 /**
