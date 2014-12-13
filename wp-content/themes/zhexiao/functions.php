@@ -17,6 +17,24 @@ add_theme_support( 'html5', array( 'search-form' ) );
 add_theme_support( 'post-thumbnails' ); 
 
 
+/**
+ * Add css and js to the Wordpress theme
+ */
+function theme_add_assets() {
+	// load css
+	wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css' );
+	wp_enqueue_style( 'font-awesome-css', get_template_directory_uri() . '/css/font-awesome.min.css' );
+	wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css' );
+
+	// load javascript
+	wp_enqueue_script( 'jquery-1.11', get_template_directory_uri() . '/js/jquery-1.11.1.min.js');
+	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '', true );
+	wp_enqueue_script( 'jquery.easing', get_template_directory_uri() . '/js/jquery.easing.1.3.js', array(), '', true );
+	wp_enqueue_script( 'main', get_template_directory_uri() . '/js/main.js', array(), '', true);
+}
+add_action( 'wp_enqueue_scripts', 'theme_add_assets' );
+
+
 
 /**
  * get post content
@@ -59,22 +77,6 @@ function catch_that_image($content = '') {
 	return $first_img;
 }
 
-
-/**
- * Add css and js to the Wordpress theme
- */
-function theme_add_assets() {
-	// load css
-	wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css' );
-	wp_enqueue_style( 'font-awesome-css', get_template_directory_uri() . '/css/font-awesome.min.css' );
-	wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css' );
-
-	// load javascript
-	wp_enqueue_script( 'jquery', get_template_directory_uri() . '/js/jquery-1.11.1.min');
-	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '', true );
-	wp_enqueue_script( 'jquery.easing', get_template_directory_uri() . '/js/jquery.easing.1.3.js', array(), '', true );
-}
-add_action( 'wp_enqueue_scripts', 'theme_add_assets' );
 
 
 /**
@@ -135,6 +137,24 @@ add_action( 'featured_posts', 'show_featured_posts');
 
 
 /**
+ * generate share html
+ * @return [type] [description]
+ */
+function generate_shares($postId){
+	$str = '<a target="_blank" href="http://www.facebook.com/sharer.php?u='.get_permalink($postId).'" class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Share on Facebook"></a>
+			<a target="_blank" href="http://twitter.com/home?status='.get_permalink($postId).'" class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Share on Twitter"></a>
+			<a target="_blank" href="http://plus.google.com/share?url='.get_permalink($postId).'
+				" class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Share on Google+">
+			</a>
+			<a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url='.get_permalink($postId).'
+				" class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Share on LinkedIn"">
+			</a>';
+
+	echo $str;
+}
+
+
+/**
  * use do_action display categorized content
  * @param  [type] $catId [description]
  * @return [type]        [description]
@@ -151,8 +171,8 @@ function show_posts_by_category($args){
 
 		// get content
 		$content = strip_tags(get_the_content());
-		if(strlen($content) > 100){
-			$content = substr($content, 0, 100).'...';
+		if(strlen($content) > 120){
+			$content = substr($content, 0, 120).'...';
 		}
 		
 

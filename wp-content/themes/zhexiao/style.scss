@@ -468,7 +468,37 @@ body{
 	.searchform {
 		margin-top: 0px;
 	}
+
+	.nav-single{
+		.fa-angle-left{
+			margin-right: 15px;
+		}
+
+		.fa-angle-right{
+			margin-left: 15px;
+		}
+	}
+
+	.nav-previous{
+		text-align: right;
+		margin: 40px 0;
+		border-right: 1px solid #e6e6e6;
+	}
+
+	.nav-next{
+		text-align: left;
+		margin: 40px 0;
+	}
+
+	.nav-p-n-label{
+		color: #b93434;
+		font-size: 14px;
+		text-transform: uppercase;
+		margin-bottom: 10px;
+		line-height: 1;
+	}
 }
+
 .post{
 	color: #000;
 	@include css3(transition, all 0.6s ease-in-out);
@@ -483,6 +513,23 @@ body{
 	.entry-title{
 		padding: 10px 0px;
 		font-size: 24px;
+	}
+
+	.entry-comment-link-wrap{
+		float: right;
+
+		.fa{
+			@include css3(transition, all 0.6s ease-in-out);
+			font-size: 15px;
+			display: inline-block;
+			padding: 5px;
+		}
+
+		.fa:hover{
+			text-decoration: none;
+			background: #161616;
+			color: #fff;
+		}
 	}
 
 	.entry-meta-1{
@@ -525,7 +572,7 @@ body{
 			font-size: 13px;
 			background: #f9edaa;
 			margin-left: 7px;
-			padding: 3px 7px;
+			padding: 4px 10px;
 			line-height: inherit;
 		}
 
@@ -534,7 +581,52 @@ body{
 			background: #161616;
 			color: #fff;
 		}
+
+		.entry-share{
+			float: right;
+
+			a{
+				display: inline-block;
+				background: #161616;
+				color: #fff;
+				font-size: 13px;
+				width: 25px;
+				line-height: 25px;
+				text-align: center;
+				margin-left: 5px;
+			}
+
+			.fa-facebook {
+				background: #204385;
+			}
+
+			.fa-twitter {
+				background: #2aa9e0;
+			}
+
+			.fa-google-plus {
+				background: #d3492c;
+			}
+
+			.fa-linkedin {
+				background: #02669a;
+			}
+
+			a:hover{
+				text-decoration: none;
+			}
+		}
 	}
+}
+
+.post-comments-area{
+	font-size: 16px;
+	font-weight: bold;
+	border: 0;
+	border-top: 2px solid #b93434;
+	text-transform: none;
+	padding-top: 14px;
+	margin-bottom: 35px;
 }
 
 

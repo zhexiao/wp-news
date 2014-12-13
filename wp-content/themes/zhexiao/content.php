@@ -25,10 +25,18 @@
 		<?php if ( is_single() ) : ?>
 			<h1 class="entry-title">
 				<?php the_title(); ?>
+
+				<?php if ( comments_open() ) : ?>
+					<a href="#respond" class="entry-comment-link-wrap">
+						<i class="fa fa-comments">
+							<?=comments_number(0, 1, '%', 'comment-link'); ?>
+						</i>
+					</a>
+				<?php endif; ?>
 			</h1>
 		<?php else : ?>
 			<h1 class="entry-title">
-				<a href="<?php the_permalink(); ?>" rel="bookmark">
+				<a href="<?php the_permalink(); ?>">
 					<?php the_title(); ?>
 				</a>
 			</h1>
@@ -69,39 +77,10 @@
 		<div class="entry-meta-2">
 			<b class="tagLabel"><i class="fa fa-tags"></i>TAGS:</b>
 			<?=get_the_tag_list( '', '');?>
+
+			<span class="entry-share">
+				<?=generate_shares( get_the_ID() );?>
+			</span>
 		</div>
-
-
-		<?php if ( comments_open() ) : ?>
-			<div class="comments-link">
-				<?php comments_popup_link( '<span class="leave-reply">' . 'Leave a reply' . '</span>', '1 Reply', '% Replies'); ?>
-			</div>
-		<?php endif; ?>
 	</header>
-
-
-
-	<footer class="entry-meta">
-		<?php edit_post_link( 'Edit', '<span class="edit-link">', '</span>' ); ?>
-		<?php if ( is_singular() && get_the_author_meta( 'description' ) && is_multi_author() ) : ?>
-			<div class="author-info">
-				<div class="author-avatar">
-					<?php
-					/** This filter is documented in author.php */
-					$author_bio_avatar_size = apply_filters( 'twentytwelve_author_bio_avatar_size', 68 );
-					echo get_avatar( get_the_author_meta( 'user_email' ), $author_bio_avatar_size );
-					?>
-				</div>
-				<div class="author-description">
-					<h2><?php printf(  'About %s', get_the_author() ); ?></h2>
-					<p><?php the_author_meta( 'description' ); ?></p>
-					<div class="author-link">
-						<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
-							<?php printf( 'View all posts by %s <span class="meta-nav">&rarr;</span>', get_the_author() ); ?>
-						</a>
-					</div>
-				</div>
-			</div>
-		<?php endif; ?>
-	</footer>
 </article>

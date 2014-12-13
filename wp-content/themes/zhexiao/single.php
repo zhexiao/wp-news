@@ -10,13 +10,19 @@ get_header(); ?>
 			<?php get_template_part( 'content', get_post_format() ); ?>
 
 			<nav class="nav-single">
-				<h3 class="assistive-text">Post navigation</h3>
-				<span class="nav-previous"><?php previous_post_link( '%link', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link' ) . '</span> %title' ); ?></span>
-				<span class="nav-next"><?php next_post_link( '%link', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link' ) . '</span>' ); ?></span>
+				<div class="col-md-6 nav-previous">
+					<div class="nav-p-n-label"><i class="fa fa-angle-left"></i>PREVIOUS ARTICLE</div>
+					<?php previous_post_link( '%link', '%title' ); ?>
+				</div>
+				<div class="col-md-6 nav-next">
+					<div class="nav-p-n-label">NEXT ARTICLE<i class="fa fa-angle-right"></i></div>
+					<?php next_post_link( '%link', '%title'); ?>
+				</div>
 			</nav>
 
-			<?php comments_template( '', true ); ?>
+			<div class="clearfix"></div>
 
+			<?php comments_template(); ?>
 		<?php endwhile; ?>
 	</div>
 	

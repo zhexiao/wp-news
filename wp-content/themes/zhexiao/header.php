@@ -43,7 +43,7 @@
 								  	$cat_name = get_cat_name($cat_id);
 							?>
 									<li class="<?=($_GET['cat']==$cat_id)?'active':'';?>" > 
-										<a href="?cat=<?=$cat_id?>"><?=$cat_name?></a>
+										<a href="<?=get_category_link($cat_id)?>"><?=$cat_name?></a>
 									</li>
 							<?php
 								}
