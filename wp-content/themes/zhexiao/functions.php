@@ -273,3 +273,87 @@ function post_content_nav( $html_id ) {
 		</nav>
 	<?php };
 }
+
+
+/**
+ * Template for comments and pingbacks.
+ *
+ * Used as a callback by wp_list_comments() for displaying the comments.
+ *
+ */
+if ( ! function_exists( 'user_post_comment' ) ) {
+	function user_post_comment( $comment, $args, $depth ) {
+		$GLOBALS['comment'] = $comment;
+		switch ( $comment->comment_type ) :
+			case 'pingback' :
+			case 'trackback' :
+			?>
+			<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+				<p>
+					Pingback
+					<?php comment_author_link(); ?> 
+					<?php edit_comment_link( '(Edit)', '<span class="edit-link">', '</span>' ); ?>
+				</p>
+			<?php
+
+			break;
+
+
+			// Proceed with normal comments.
+			default :
+			global $post;
+			?>
+			<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
+				<article id="comment-<?php comment_ID(); ?>" class="comment">
+					<header class="comment-meta comment-author vcard">
+						<div class="media">
+							<a class="media-left" href="#">
+								<?=get_avatar( $comment, 44 );?>
+							</a>
+							<div class="media-body">
+								<div class="media-heading">
+									<div class="media-heading-1"> 
+										<?=get_comment_author_link()?>
+										<?php 
+										printf( '<a href="%1$s"><time datetime="%2$s">%3$s</time></a>',
+											esc_url( get_comment_link( $comment->comment_ID ) ),
+											get_comment_time( 'c' ),
+											sprintf( 
+												'%1$s, %2$s', 
+												get_comment_time(),
+												get_comment_date()											
+											)
+										);
+										?>
+									</div>
+									
+									<div class="media-heading-2">
+										<?php edit_comment_link(  'Edit', '<p class="edit-link">', '</p>' ); ?>
+										<?php comment_reply_link( array_merge( $args, array( 
+											'reply_text' => 'Reply', 
+											'after' => '', 
+											'depth' => $depth, 
+											'max_depth' => $args['max_depth'] ) 
+										)); ?>
+									</div>
+								</div>
+								<div class="media-content">
+									<?php if ( '0' == $comment->comment_approved ) : ?>
+										<p class="comment-awaiting-moderation">
+											Your comment is awaiting moderation
+										</p>
+									<?php endif; ?>
+
+									<section class="comment-content comment">
+										<?php comment_text(); ?>
+									</section>
+								</div>
+							</div>
+						</div>
+					</header>
+				</article>
+		<?php
+			break;
+		endswitch; 
+	}
+}

@@ -355,11 +355,11 @@ body {
   .single-post .nav-single .fa-angle-right {
     margin-left: 15px; }
   .single-post .nav-previous {
-    text-align: right;
     margin: 40px 0;
+    text-align: center;
     border-right: 1px solid #e6e6e6; }
   .single-post .nav-next {
-    text-align: left;
+    text-align: center;
     margin: 40px 0; }
   .single-post .nav-p-n-label {
     color: #b93434;
@@ -401,12 +401,12 @@ body {
     font-size: 13px;
     border-top: 1px solid #e6e6e6;
     border-bottom: 1px solid #e6e6e6;
-    color: #b0b0b0;
+    color: #777;
     margin: 10px 0; }
     .post .entry-meta-1 .category {
       float: right; }
       .post .entry-meta-1 .category a {
-        color: #5db935; }
+        color: #2C710E; }
   .post .entry-content {
     padding: 10px 0px;
     margin: 10px 0;
@@ -458,7 +458,142 @@ body {
   border-top: 2px solid #b93434;
   text-transform: none;
   padding-top: 14px;
-  margin-bottom: 35px; }
+  margin-bottom: 35px;
+  -webkit-transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -ms-transition: all 0.6s ease-in-out;
+  -o-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out; }
+  .post-comments-area ul {
+    list-style-type: none; }
+  .post-comments-area input, .post-comments-area textarea, .post-comments-area select {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    padding: 6px 14px;
+    outline: 0;
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    font-weight: normal;
+    font-size: 17px; }
+  .post-comments-area .comment-awaiting-moderation {
+    clear: both;
+    color: #b93434;
+    font-weight: bold; }
+  .post-comments-area #commentform p {
+    padding: 10px 0; }
+  .post-comments-area #commentform .form-submit {
+    padding: 0px; }
+    .post-comments-area #commentform .form-submit #submit {
+      float: right; }
+  .post-comments-area #commentform input[type=text], .post-comments-area #commentform textarea {
+    width: 100%; }
+  .post-comments-area #commentform textarea {
+    height: 200px; }
+  .post-comments-area #commentform #submit {
+    color: #666;
+    -webkit-transition: all 0.6s ease-in-out;
+    -moz-transition: all 0.6s ease-in-out;
+    -ms-transition: all 0.6s ease-in-out;
+    -o-transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out; }
+  .post-comments-area #commentform #submit:hover {
+    text-decoration: none;
+    background: #161616;
+    color: #fff; }
+  .post-comments-area .commentlist {
+    font-weight: normal; }
+    .post-comments-area .commentlist li.comment {
+      margin-bottom: 20px; }
+    .post-comments-area .commentlist li.depth-1 {
+      border-bottom: 2px solid #b93434; }
+    .post-comments-area .commentlist article {
+      position: relative;
+      margin-bottom: 20px; }
+    .post-comments-area .commentlist .comment-author .avatar {
+      -webkit-border-radius: 50px;
+      -moz-border-radius: 50px;
+      -ms-border-radius: 50px;
+      -o-border-radius: 50px;
+      border-radius: 50px; }
+    .post-comments-area .commentlist .comment-content {
+      clear: both;
+      padding: 10px 0;
+      font-size: 15px;
+      line-height: 1.5; }
+    .post-comments-area .commentlist .media-heading-1 time {
+      font-size: 13px;
+      color: #666;
+      margin-left: 5px; }
+    .post-comments-area .commentlist .media-heading-2 .edit-link {
+      display: inline-block;
+      margin-right: 10px; }
+    .post-comments-area .commentlist .media-heading-2 .comment-reply-link, .post-comments-area .commentlist .media-heading-2 .edit-link a {
+      background: #efefef;
+      font-size: 11px;
+      text-transform: uppercase;
+      line-height: 21px;
+      padding: 5px 10px;
+      -webkit-transition: all 0.6s ease-in-out;
+      -moz-transition: all 0.6s ease-in-out;
+      -ms-transition: all 0.6s ease-in-out;
+      -o-transition: all 0.6s ease-in-out;
+      transition: all 0.6s ease-in-out; }
+    .post-comments-area .commentlist .media-heading-2 .comment-reply-link:hover, .post-comments-area .commentlist .media-heading-2 .edit-link a:hover {
+      text-decoration: none;
+      background: #161616;
+      color: #fff; }
+    .post-comments-area .commentlist .children {
+      margin-left: 45px; }
+  .post-comments-area #reply-title {
+    padding: 10px 0; }
+    .post-comments-area #reply-title a {
+      color: #2C710E; }
+    .post-comments-area #reply-title small a {
+      display: inline-block;
+      margin-left: 20px;
+      color: #b93434;
+      background: #f6f6f6;
+      font-size: 11px;
+      text-transform: uppercase;
+      line-height: 21px;
+      padding: 2px 7px;
+      font-weight: bold;
+      -webkit-transition: all 0.6s ease-in-out;
+      -moz-transition: all 0.6s ease-in-out;
+      -ms-transition: all 0.6s ease-in-out;
+      -o-transition: all 0.6s ease-in-out;
+      transition: all 0.6s ease-in-out; }
+    .post-comments-area #reply-title small a:hover {
+      text-decoration: none;
+      background: #161616;
+      color: #fff; }
+
+.logged-in-as {
+  position: relative;
+  font-weight: normal;
+  -webkit-transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -ms-transition: all 0.6s ease-in-out;
+  -o-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out; }
+  .logged-in-as .user {
+    display: inline-block;
+    position: absolute;
+    top: 6px;
+    left: 55px;
+    font-size: 22px; }
+  .logged-in-as .logout {
+    float: right;
+    display: inline-block;
+    padding: 10px;
+    background: #efefef;
+    font-size: 13px;
+    margin-top: 5px; }
+  .logged-in-as .logout:hover {
+    text-decoration: none;
+    background: #161616;
+    color: #fff; }
 
 .footer {
   margin: 60px 0 30px; }
