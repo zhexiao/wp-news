@@ -283,6 +283,7 @@ body{
 
 			.media-top{
 				img{
+					width: 100%;
 					cursor: pointer;
 					@include css3(transition, all 0.6s ease-in-out);
 				}
