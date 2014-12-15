@@ -4,7 +4,7 @@
 <div class="main-content">
 	<div class="main-top-1">
 		<div class="col-md-8">
-			<?php echo do_shortcode( '[soliloquy id="3"]' ) ?>
+			<?php echo do_shortcode( '[soliloquy slug="feature-slider"]' ) ?>
 		</div>
 
 		<div class="col-md-4">	
