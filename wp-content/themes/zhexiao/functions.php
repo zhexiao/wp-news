@@ -254,6 +254,43 @@ function show_recent_posts($args = array()){
 }
 add_action( 'recent_posts', 'show_recent_posts');
 
+/**
+ * display the recent comments
+ */
+function show_recent_comments($args = array()){
+	$str = '';
+	$recent_comments = get_comments( $args );
+	foreach( $recent_comments as $recent ){
+		// echo '<pre>';
+		// print_r($recent);
+		// check the title
+		$title = $recent->comment_content;
+		if(strlen($title) > 70){
+			$title = substr($title, 0, 70).'...';
+		}
+
+		// get the featured image
+		$image = get_avatar( $recent->comment_author_email, 64 );
+		$imgStr = '';	
+		if(!empty($image)){
+			$imgStr = 	'<a class="media-left" href="'.get_comment_link($recent->comment_ID).'">
+					    	'.$image.'
+					  	</a>';
+		}
+
+		$str .= '<div class="media">
+				  	'.$imgStr.'
+				  	<div class="media-body">
+				    	<div class="r-p-title"><a href="'.get_comment_link($recent->comment_ID).'">'.$title.'</a></div>
+				    	<time>'.date('h:i A, D F j, Y', strtotime($recent->comment_date)).'</time>
+				  	</div>
+				</div>';
+	}
+
+	echo $str;
+}
+add_action( 'recent_comments', 'show_recent_comments');
+
 
 
 /**
@@ -267,9 +304,12 @@ function post_content_nav( $html_id ) {
 
 	if ( $wp_query->max_num_pages > 1 ){ ?>
 		<nav id="<?=$html_id;?>" class="navigation" role="navigation">
-			<h3 class="assistive-text">Post navigation</h3>
-			<div class="nav-previous"><?php next_posts_link('<span class="meta-nav">&larr;</span> Older posts'); ?></div>
-			<div class="nav-next"><?php previous_posts_link('Newer posts <span class="meta-nav">&rarr;</span>'); ?></div>
+			<div class="nav nav-previous">
+				<?php previous_posts_link('<span class="meta-nav"><i class="fa fa-arrow-left"></i>Newer</span>'); ?>
+			</div>
+			<div class="nav nav-next">
+				<?php next_posts_link('<span class="meta-nav">Older<i class="fa fa-arrow-right"></i></span>'); ?>
+			</div>
 		</nav>
 	<?php };
 }
@@ -289,11 +329,8 @@ if ( ! function_exists( 'user_post_comment' ) ) {
 			case 'trackback' :
 			?>
 			<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-				<p>
-					Pingback
-					<?php comment_author_link(); ?> 
-					<?php edit_comment_link( '(Edit)', '<span class="edit-link">', '</span>' ); ?>
-				</p>
+				<?php comment_author_link(); ?> 
+				<?php edit_comment_link( '(Edit)', '<span class="edit-link">', '</span>' ); ?>
 			<?php
 
 			break;
@@ -356,4 +393,12 @@ if ( ! function_exists( 'user_post_comment' ) ) {
 			break;
 		endswitch; 
 	}
+}
+
+/**
+ * define top navigation
+ */
+add_action( 'after_setup_theme', 'top_navigation' );
+function top_navigation() {
+	register_nav_menu( 'top_navigation', 'Top Navigation' );
 }

@@ -17,6 +17,19 @@
 		?>	
 	</div>
 
+	<!-- recent comments -->
+	<div class="recent-post">
+		<h4 class="r-s-rp">
+			<span class="title">Recent Comments</span>
+		</h4>
+		<?php
+		do_action( 'recent_comments', array(
+			'status' => 'approve', 
+			'number'=>5
+		));	
+		?>	
+	</div>
+
 	<!-- dynatic sidebar -->
 	<ul class="widget-area">
 		<?php dynamic_sidebar( 'right-sidebar' ); ?>

@@ -46,7 +46,7 @@
 	<div class="clearfix"></div>
 
 	<div class="main-top-3">
-		<div class="col-md-8">
+		<div class="col-md-8 index-main">
 			<h4 class="m-t-h4 m-t-3-ent m-t-3-t1">
 				<span class="title">
 					<?=get_cat_name( $GLOBALS['catTop2'] )?>

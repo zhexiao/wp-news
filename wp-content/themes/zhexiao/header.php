@@ -33,21 +33,8 @@
 
 					<!-- Collect the nav links, forms, and other content for toggling -->			
 					<div class="collapse navbar-collapse" id="header-navigator">
-						<ul class="nav navbar-nav header-nav-ul">
-							<li class="<?=!isset($_GET['cat'])?'active':'';?>">
-								<a href="<?=get_home_url()?>">Home</a>
-							</li>
-							<?php
-								$category_ids = get_all_category_ids();
-								foreach($category_ids as $cat_id) { 
-								  	$cat_name = get_cat_name($cat_id);
-							?>
-									<li class="<?=($_GET['cat']==$cat_id)?'active':'';?>" > 
-										<a href="<?=get_category_link($cat_id)?>"><?=$cat_name?></a>
-									</li>
-							<?php
-								}
-							?>				
+						<ul class="nav navbar-nav header-nav-ul">				
+							<?=wp_nav_menu( array( 'theme_location' => 'top_navigation' ) ); ?>	
 						</ul>
 					</div>
 				</div>

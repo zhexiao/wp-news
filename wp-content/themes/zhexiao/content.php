@@ -50,7 +50,7 @@
 			</span>
 
 			<span class="datetime">
-				on <?=get_the_date()?>
+				on <?=get_the_time().', '.get_the_date()?>
 			</span>
 
 			<span class="category">
@@ -59,13 +59,13 @@
 		</div>
 
 		<!-- content -->
-		<?php if ( is_search() ) : ?>
+		<?php if ( is_search() || is_category() ) : ?>
 			<div class="entry-summary">
 				<?php the_excerpt(); ?>
 			</div>
 		<?php else : ?>
 			<div class="entry-content">
-				<?php the_content( 'Continue reading <span class="meta-nav">&rarr;</span>' ); ?>
+				<?php the_content( 'Read more...' ); ?>
 				<?php wp_link_pages( array( 
 					'before' => '<div class="page-links">' . 'Pages:', 
 					'after' => '</div>' 
