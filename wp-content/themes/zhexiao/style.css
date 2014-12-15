@@ -219,6 +219,7 @@ body {
     border-bottom: 1px solid #dfdfdf; }
   .main-content .m-t-3-content .f-a-col .media-top img {
     width: 100%;
+    height: 225px;
     cursor: pointer;
     -webkit-transition: all 0.6s ease-in-out;
     -moz-transition: all 0.6s ease-in-out;
@@ -238,8 +239,11 @@ body {
     padding: 0 0 10px 0;
     color: #010101; }
     .main-content .m-t-3-content .f-a-col .c-p-title a {
-      font-size: 17px; }
+      font-size: 17px;
+      height: 48px;
+      display: inline-block; }
   .main-content .m-t-3-content .f-a-col .c-p-content {
+    height: 50px;
     font-size: 13px;
     margin-bottom: 10px; }
 .main-content .m-t-4-t1 {
@@ -412,7 +416,7 @@ body {
     border-top: 1px solid #dfdfdf;
     border-bottom: 1px solid #dfdfdf;
     color: #777;
-    margin: 10px 0; }
+    margin: 30px 0 10px; }
     .post .entry-meta-1 .category {
       float: right; }
       .post .entry-meta-1 .category a {
@@ -649,5 +653,29 @@ body {
 #respond {
   margin-top: 50px; }
 
+blockquote {
+  margin: 20px 0;
+  padding: 0px 20px;
+  border-left: 2px solid #b93434; }
+  blockquote img {
+    width: 100%; }
+  blockquote .Zocle_Content_Headline a {
+    font-size: 26px;
+    display: inline-block;
+    font-weight: normal; }
+  blockquote .Zocle_Content_URL {
+    font-size: 14px;
+    color: #777; }
+  blockquote .Zocle_Content_Teaser {
+    font-size: 17px;
+    font-weight: normal;
+    padding: 10px 0;
+    line-height: 1.2; }
+  blockquote .Zocle_Content_Date {
+    font-size: 14px;
+    color: #777; }
+
 .footer {
   margin: 60px 0 30px; }
+
+/*# sourceMappingURL=style.css.map */
