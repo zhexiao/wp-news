@@ -1,4 +1,3 @@
 User-agent: *
 Disallow: /wp-admin/
 
-sitemap: http://cdn.snapsitemap.com/sitemap/111696.xml.gz
