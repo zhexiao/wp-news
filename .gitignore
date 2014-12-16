@@ -1,7 +1,7 @@
 *.log
 .htaccess
-sitemap.xml
-sitemap.xml.gz
+# sitemap.xml
+# sitemap.xml.gz
 # wp-config.php
 # wp-content/advanced-cache.php
 # wp-content/backup-db/
