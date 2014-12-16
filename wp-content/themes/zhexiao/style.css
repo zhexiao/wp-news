@@ -167,9 +167,7 @@ body {
   -o-transform: scale(1.1);
   transform: scale(1.1); }
 .main-content .m-t-h4 {
-  margin-right: 15px;
-  border-bottom: 2px solid #b93434;
-  font-family: "Open Sans", Arial, sans-serif; }
+  border-bottom: 2px solid #b93434; }
   .main-content .m-t-h4 .title {
     padding: 10px 11px;
     display: inline-block;
