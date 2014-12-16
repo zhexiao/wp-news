@@ -2,7 +2,7 @@
 /**
  * global variable
  */
-$GLOBALS['catTop1'] = 8;
+$GLOBALS['catTop1'] = 3;
 $GLOBALS['catTop2'] = 7;
 $GLOBALS['catTop3'] = 6;
 $GLOBALS['catTop4'] = 5;
@@ -37,25 +37,6 @@ add_action( 'wp_enqueue_scripts', 'theme_add_assets' );
 
 
 /**
- * get post content
- */
-function get_category_posts($categoryId = '', $page = 5, $offset = 0){
-	$args = array(
-		'posts_per_page'   => $page,
-		'offset'           => $offset,
-		'category'         => $categoryId,
-		'orderby'          => 'post_date',
-		'order'            => 'DESC',
-		'post_type'        => 'post',
-		'post_status'      => 'publish',
-		'suppress_filters' => true 
-	); 
-
-	return get_posts( $args );
-}
-
-
-/**
  * get the  first image in post content
  * @return [type] [description]
  */
@@ -83,7 +64,7 @@ function catch_that_image($content = '') {
  * Register dynamic sidebars.
  */
 function sidebar_widgets_init() {
-	$args = array(
+	register_sidebar(array(
 		'name'          => __( 'Right Sidebar', 'right-sidebar' ),
 		'id'            => 'right-sidebar',
 		'description'   => '',
@@ -92,9 +73,20 @@ function sidebar_widgets_init() {
 		'after_widget'  => '</li>',
 		'before_title'  => '<h2 class="widgettitle">',
 		'after_title'   => '</h2>' 
-	);
+	));
 
-	register_sidebar($args);
+
+
+	register_sidebar(array(
+		'name'          => __( 'Bottom Sidebar', 'bottom-sidebar' ),
+		'id'            => 'bottom-sidebar',
+		'description'   => '',
+	    'class'         => '',
+		'before_widget' => '<li id="%1$s" class="col-md-4 clearfix widget %2$s">',
+		'after_widget'  => '</li>',
+		'before_title'  => '<h2 class="widgettitle">',
+		'after_title'   => '</h2>' 
+	));
 }
 add_action( 'widgets_init', 'sidebar_widgets_init' );
 
@@ -166,6 +158,12 @@ function show_posts_by_category($args){
 	));
 	$str = '';
 
+	// calculate how many columns should display
+	$colWidthClass = 'col-md-6';
+	if($args['cat']==3){
+		$colWidthClass = 'col-md-4';
+	}
+
 	while ( $catQuery->have_posts() ) {
 		$catQuery->the_post();
 
@@ -191,7 +189,7 @@ function show_posts_by_category($args){
 					  	</a>';
 		}
 
-		$str .= '<div class="col-md-6 f-a-col">
+		$str .= '<div class="'.$colWidthClass.' f-a-col">
 					<div class="media">
 					  	'.$imgStr.'
 					  	<div class="media-body">
@@ -224,8 +222,8 @@ function show_recent_posts($args = array()){
 	foreach( $recent_posts as $recent ){
 		// check the title
 		$title = $recent["post_title"];
-		if(strlen($title) > 70){
-			$title = substr($title, 0, 70).'...';
+		if(strlen($title) > 50){
+			$title = substr($title, 0, 50).'...';
 		}
 
 		// get the featured image
@@ -237,7 +235,7 @@ function show_recent_posts($args = array()){
 		$imgStr = '';	
 		if(!empty($image)){
 			$imgStr = 	'<a class="media-left" href="'.get_permalink($recent['ID']).'">
-					    	<img src="'.$image.'" alt="'.$title.'" style="width: 64px; height: 60px;">
+					    	<img src="'.$image.'" alt="'.$title.'" style="width: 64px; height: 64px;">
 					  	</a>';
 		}
 
@@ -265,8 +263,8 @@ function show_recent_comments($args = array()){
 		// print_r($recent);
 		// check the title
 		$title = $recent->comment_content;
-		if(strlen($title) > 70){
-			$title = substr($title, 0, 70).'...';
+		if(strlen($title) > 50){
+			$title = substr($title, 0, 50).'...';
 		}
 
 		// get the featured image

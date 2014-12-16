@@ -12,7 +12,7 @@
 		</h4>
 		<?php
 		do_action( 'recent_posts', array(
-			'posts_per_page' => 5
+			'posts_per_page' => 8
 		));	
 		?>	
 	</div>
@@ -25,7 +25,7 @@
 		<?php
 		do_action( 'recent_comments', array(
 			'status' => 'approve', 
-			'number'=>5
+			'number'=>8
 		));	
 		?>	
 	</div>
