@@ -1,3 +1,3 @@
 wp-news
 =======
-wordpress news
+wordpress popular magazine
