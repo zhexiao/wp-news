@@ -1,3 +1,0 @@
-wp-news
-=======
-wordpress news
